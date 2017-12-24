@@ -212,4 +212,107 @@
 - my guess is that we must upload a malicious pic
 - 
 
-  
+#### nmap output
+```
+nmap -A -v -p- 192.168.10.156
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2017-12-24 23:07 IST
+NSE: Loaded 146 scripts for scanning.
+NSE: Script Pre-scanning.
+Initiating NSE at 23:07
+Completed NSE at 23:07, 0.00s elapsed
+Initiating NSE at 23:07
+Completed NSE at 23:07, 0.00s elapsed
+Initiating Ping Scan at 23:07
+Scanning 192.168.10.156 [4 ports]
+Completed Ping Scan at 23:07, 0.08s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 23:07
+Completed Parallel DNS resolution of 1 host. at 23:07, 13.00s elapsed
+Initiating SYN Stealth Scan at 23:07
+Scanning 192.168.10.156 [65535 ports]
+Discovered open port 22/tcp on 192.168.10.156
+Discovered open port 80/tcp on 192.168.10.156
+SYN Stealth Scan Timing: About 35.52% done; ETC: 23:09 (0:00:56 remaining)
+Completed SYN Stealth Scan at 23:09, 79.99s elapsed (65535 total ports)
+Initiating Service scan at 23:09
+Scanning 2 services on 192.168.10.156
+Completed Service scan at 23:09, 6.16s elapsed (2 services on 1 host)
+Initiating OS detection (try #1) against 192.168.10.156
+Retrying OS detection (try #2) against 192.168.10.156
+Retrying OS detection (try #3) against 192.168.10.156
+Retrying OS detection (try #4) against 192.168.10.156
+Retrying OS detection (try #5) against 192.168.10.156
+Initiating Traceroute at 23:09
+Completed Traceroute at 23:09, 0.05s elapsed
+Initiating Parallel DNS resolution of 2 hosts. at 23:09
+Completed Parallel DNS resolution of 2 hosts. at 23:09, 13.00s elapsed
+NSE: Script scanning 192.168.10.156.
+Initiating NSE at 23:09
+Completed NSE at 23:09, 1.63s elapsed
+Initiating NSE at 23:09
+Completed NSE at 23:09, 0.00s elapsed
+Nmap scan report for 192.168.10.156
+Host is up (0.045s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 a5:67:aa:44:f5:ea:16:93:47:63:bc:e4:bd:9f:8b:05 (RSA)
+|   256 05:96:a2:3e:ed:f7:9b:e0:c4:42:16:a3:f8:35:6c:a2 (ECDSA)
+|_  256 c4:59:1b:3f:a5:f8:62:f0:79:45:1c:2d:50:98:65:e0 (EdDSA)
+80/tcp open  http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
+| http-methods: 
+|_  Supported Methods: GET HEAD POST OPTIONS
+|_http-server-header: Apache/2.4.6 (CentOS) PHP/5.4.16
+|_http-title: Hack me if you can
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=12/24%OT=22%CT=1%CU=33041%PV=Y%DS=2%DC=T%G=Y%TM=5A3FE6
+OS:5C%P=x86_64-pc-linux-gnu)SEQ(SP=108%GCD=1%ISR=10D%TI=Z%II=I%TS=A)SEQ(SP=
+OS:108%GCD=1%ISR=10D%TI=Z%TS=A)OPS(O1=M5B4ST11NW7%O2=M5B4ST11NW7%O3=M5B4NNT
+OS:11NW7%O4=M5B4ST11NW7%O5=M5B4ST11NW7%O6=M5B4ST11)WIN(W1=7120%W2=7120%W3=7
+OS:120%W4=7120%W5=7120%W6=7120)ECN(R=Y%DF=Y%T=40%W=7210%O=M5B4NNSNW7%CC=Y%Q
+OS:=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=N)T5(R=Y%DF=
+OS:Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=N)T7(R=N)U1(R=Y%DF=N%T=40%IPL=1
+OS:64%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Uptime guess: 1.472 days (since Sat Dec 23 11:50:13 2017)
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=264 (Good luck!)
+IP ID Sequence Generation: All zeros
+
+TRACEROUTE (using port 993/tcp)
+HOP RTT      ADDRESS
+1   43.07 ms 10.0.10.254
+2   43.36 ms 192.168.10.156
+```
+
+#### nikto output
+nikto -h 192.168.10.156
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          192.168.10.156
++ Target Hostname:    192.168.10.156
++ Target Port:        80
++ Start Time:         2017-12-24 23:07:48 (GMT5.5)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.6 (CentOS) PHP/5.4.16
++ Retrieved x-powered-by header: PHP/5.4.16
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Apache/2.4.6 appears to be outdated (current is at least Apache/2.4.12). Apache 2.0.65 (final release) and 2.2.29 are also current.
++ PHP/5.4.16 appears to be outdated (current is at least 5.6.9). PHP 5.5.25 and 5.4.41 are also current.
++ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-12184: /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-3268: /icons/: Directory indexing found.
++ Server leaks inodes via ETags, header found with file /icons/README, fields: 0x13f4 0x438c034968a80 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 8345 requests: 0 error(s) and 14 item(s) reported on remote host
++ End Time:           2017-12-24 23:14:55 (GMT5.5) (427 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
