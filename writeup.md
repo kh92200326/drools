@@ -63,9 +63,10 @@
 
 
 
-### 192.168.10.65
+## 192.168.10.65
 - SMB is enabled
 - cannot get in SMB using guest account - NT_ACCOUNT_DISABLED
+++ must try out https://blogs.technet.microsoft.com/srd/2009/11/10/vulnerability-in-web-services-on-devices-wsd-api/ 
 #### Nikto Report for 192.168.10.65
 - Nikto v2.1.6
 ---------------------------------------------------------------------------
