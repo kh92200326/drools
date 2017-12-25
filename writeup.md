@@ -316,4 +316,4 @@ nikto -h 192.168.10.156
 + End Time:           2017-12-24 23:14:55 (GMT5.5) (427 seconds)
 ---------------------------------------------------------------------------
 + 1 host(s) tested
-
+Tried to connect to 192.168.10.156 on ssh as port 22 is open. asking for credentials. need to run a script based password attack
